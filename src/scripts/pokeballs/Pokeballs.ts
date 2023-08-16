@@ -101,6 +101,18 @@ class Pokeballs implements Feature {
             new Pokeball(GameConstants.Pokeball.Beastball, () => {
                 return 10;
             }, 1000, 'Can only be used on Ultra Beasts', new TemporaryBattleRequirement('Anabel')),
+
+            new Pokeball(GameConstants.Pokeball.Loveball, () => {
+                if (GameConstants.BattlePokemonGender.Male) {
+                    const amountCaught = App.game.statistics.femalePokemonCaptured[Battle.enemyPokemon().id]();
+                    return Math.min(15,Math.pow(amountCaught,2) / 2000);
+                } else if (GameConstants.BattlePokemonGender.Female) {
+                    const amountCaught = App.game.statistics.malePokemonCaptured[Battle.enemyPokemon().id]();
+                    return Math.min(15,Math.pow(amountCaught,2) / 2000);
+                } else if (GameConstants.BattlePokemonGender.NoGender) {
+                    return 0;
+                }
+            }, 1000, 'Increased catch rate on Pokémon of the opposite gender', new RouteKillRequirement(10, GameConstants.Region.johto, 34)),
         ];
         this.selectedTitle = ko.observable('');
         this.selectedSelection = ko.observable();

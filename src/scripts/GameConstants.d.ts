@@ -244,6 +244,7 @@ namespace GameConstants {
         'Nestball',
         'Repeatball',
         'Beastball',
+        'Loveball',
     }
     declare enum Currency {
         money,
