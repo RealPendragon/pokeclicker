@@ -386,6 +386,7 @@ class Dungeon {
                 lock: false,
                 lockMessage: '',
                 mimic: mimic,
+                mimicTier: `assets/images/dungeons/chest-${LootTier}.png`,
             };
             return encounter;
         };
